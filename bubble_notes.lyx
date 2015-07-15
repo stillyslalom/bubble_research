@@ -1,0 +1,1304 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+% HMCpset header info (uncomment to include)
+%\name{Alex Ames}
+%\class{}
+%\assignment{}
+%\duedate{}
+
+\usepackage{keyval, kvoptions, fancyvrb, float, ifthen, calc, ifplatform}
+\usepackage{pdftexcmds, etoolbox, xstring, xcolor}
+\usepackage{minted}
+
+\usepackage{fontspec,polyglossia,unicode-math}
+
+\usepackage{bm}
+
+\usepackage[bold]{hhtensor} % options:bold, arrow, uline
+\usepackage{physics}
+\usepackage{siunitx}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+
+\let\oldenumerate=\enumerate
+\def\enumerate{
+\oldenumerate
+\setlength{\itemsep}{-3pt}
+}
+\let\olditemize=\itemize
+\def\itemize{
+\olditemize
+\setlength{\itemsep}{-3pt}
+}
+
+\usepackage{ifthen}
+\renewenvironment{figure}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{figure}
+ }{%
+   \@float{figure}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+
+
+\renewenvironment{table}[1][]{%
+ \ifthenelse{\equal{#1}{}}{%
+   \@float{table}
+ }{%
+   \@float{table}[#1]%
+ }%
+ \centering
+}{%
+ \end@float
+}
+\end_preamble
+\use_default_options false
+\begin_modules
+todonotes
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package babel
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman garamondx
+\font_sans biolinum
+\font_typewriter beramono
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement t
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 1
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "basicstyle={\small\ttfamily},breaklines=true,frame=tb"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Eliminating Fluorescence in Surfactant-Stabilized Films
+\end_layout
+
+\begin_layout Author
+Alex Ames
+\begin_inset Newline newline
+\end_inset
+
+Department of Engineering Physics
+\begin_inset Newline newline
+\end_inset
+
+University of Wisconsin-Madison
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+listoftodos
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Standard
+The Wisconsin Shock Tube Laboratory (WiSTL) investigates phenomena that
+ occur at the interfaces between different gases upon perturbation with
+ a shock wave.
+ Past work involved shocking one or more noble-gas-filled bubbles and recording
+ post-shock conditions using planar laser-induced fluorescence.
+ Future testing may investigate shock-initiated combustion of gas bubbles,
+ but a major obstacle exists to useful data collection--the solution presently
+ used to form the bubbles fluoresces, drowning out the optical signal produced
+ by the hydroxyl and its byproducts.
+ Any solution found must produce little to no fluorescence when exposed
+ to an ultraviolet laser (
+\begin_inset Formula $\lambda\approx278\,{\rm nm}$
+\end_inset
+
+) and allow for bubble longevity and stability.
+\end_layout
+
+\begin_layout Section
+Initial findings
+\end_layout
+
+\begin_layout Standard
+Bubbles are currently generated within the shock tube using humidified,
+ pressurized gas which passes through a retractable injection tube.
+ The tube has a 
+\begin_inset Formula $90^{\circ}$
+\end_inset
+
+ bend near the tip which allows the bubble to form either directly above
+ or below the tip
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Depending on the relative densities of the bubble and surrounding gases
+\end_layout
+
+\end_inset
+
+, reducing kinematic instabilities during bubble formation.
+ The tube has an inner diameter of approximately 1 cm, with 
+\begin_inset Formula $\sim1$
+\end_inset
+
+ mm square crenellations which are believed to increase bubble longevity
+ cut into the tip.
+ 
+\end_layout
+
+\begin_layout Standard
+The bubble solution is a 1:1:6 ratio of Dawn soap:glycerin:deionized water.
+ A wide variety of known and unknown fluorescing impurities may exist in
+ the Dawn soap, making it unsuitable for OH-PLIF imaging of combustion.
+\end_layout
+
+\begin_layout Standard
+Past work involved cuvette testing of several surfactants at approximately
+ 1:8 concentrations of surfactant to water.
+ Glycerin was occasionally included.
+ Tested surfactants included:
+\end_layout
+
+\begin_layout Itemize
+SLES: sodium lauryl ether sulfate
+\end_layout
+
+\begin_layout Itemize
+SLS: sodium lauryl sulfate
+\end_layout
+
+\begin_layout Itemize
+ALS: ammonium lauryl sulfate
+\end_layout
+
+\begin_layout Standard
+ALS showed the most promise, with low fluorescence relative to other soaps
+ and good bubble duration.
+ However, bubble duration was lower for ALS than for the Dawn soap solution.
+ Because the time between bubble formation and shock release can vary significan
+tly, this could potentially lead to bubbles popping prematurely.
+ Glycerin readily increases bubble stability, but past testing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "navarro_soapfluor"
+
+\end_inset
+
+ indicated that it fluoresces somewhat (although this may be due to impurities
+ present in the glycerin).
+ In an effort to discover a bubble-stabilizing additive which wouldn't fluoresce
+, guidance was sought from Nicholas Abbott
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+UW-Madison Department of Chemical & Biological Engineering
+\end_layout
+
+\end_inset
+
+, whose work is heavily involved with fluorescence of surfactant solutions.
+ His suggestions follow:
+\end_layout
+
+\begin_layout Itemize
+Look into the nonionic alkyl polyglycolether (
+\begin_inset Formula $C_{i}E_{j}$
+\end_inset
+
+) family of surfactants, since they're based on glycol chains.
+\end_layout
+
+\begin_layout Itemize
+Even lab-grade 
+\begin_inset Formula $C_{i}E_{j}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "c8e4"
+
+\end_inset
+
+ solutions may cause fluorescence--at 98% concentration, 2% is left to productio
+n impurities and breakdown products with unknown (potentially-fluorescing)
+ chemical composition.
+\end_layout
+
+\begin_layout Itemize
+Purification techniques are available for 
+\begin_inset Formula $C_{i}E_{j}$
+\end_inset
+
+, although published details 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "stubenrauch2001purification"
+
+\end_inset
+
+ are somewhat opaque.
+\end_layout
+
+\begin_layout Itemize
+Purification may not be necessary at all, depending on the noise floor of
+ the imaging techniques presently used, as well as the strength of the signal
+ produced by combustion species.
+\end_layout
+
+\begin_layout Itemize
+T.J.
+ Smith (a current grad student of Prof.
+ Abbott's) is presently researching surfactants and is a good contact for
+ more detailed investigation.
+ His email address is 
+\begin_inset CommandInset href
+LatexCommand href
+name "tjsmith8@wisc.edu"
+target "tjsmith8@wisc.edu"
+type "mailto:"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Fluorescence
+\end_layout
+
+\begin_layout Standard
+At the most basic level, fluorescence occurs when a photon strikes a molecule,
+ forcing its electrons into a higher-energy configuration.
+ If this excess energy is not dissipated by other processes, it is emitted
+ in the form of fluorescence.
+ The absorption-emission process does not happen instantaneously--a delay
+ on the order of 
+\begin_inset Formula $10^{-5\sim8}$
+\end_inset
+
+ s is typical
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The delay time varies depending on the fluorescing molecule.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The author is unsure whether analysis of PLIF imagery takes this delay into
+ account.
+\end_layout
+
+\end_inset
+
+ for most organic molecules, which almost always have singlet ground states.
+ The strength of a given molecule's fluorescence is given by 
+\begin_inset Formula $\phi_{F}$
+\end_inset
+
+, the fluorescence quantum efficiency
+\end_layout
+
+\begin_layout Standard
+Some difficulty was encountered when searching the literature for surfactant
+ fluorescence minimization techniques, since most research concerning fluorescen
+ce focuses on the mechanisms of fluorescence generation rather than minimization.
+ The best resource available to date appears to be Practical Fluorescence
+ by Guilbault 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "guilbault1990practical"
+
+\end_inset
+
+, which discusses molecular structures to avoid when attempting to produce
+ fluorescence.
+ These structures include carbonyl (
+\begin_inset Formula ${\rm C=O}$
+\end_inset
+
+), thiocarbonyl (
+\begin_inset Formula ${\rm C=S}$
+\end_inset
+
+), and nitro (
+\begin_inset Formula ${\rm -NO_{2}}$
+\end_inset
+
+) groups, as these entities have a lone pair of electrons in a nonbonding
+ orbital which is easily transitioned to an antibonding orbital.
+ It is unclear whether these groups occur frequently (if at all) in commercial
+ surfactants, so Guilbault's advice may be of little use.
+\end_layout
+
+\begin_layout Section
+Bubble formation and stability
+\end_layout
+
+\begin_layout Standard
+The surfactant films which form the walls of bubbles comprise two outer
+ surfaces and an inner bulk fluid.
+ The surfaces consist of monomolecular layers of ions (or other, non-ionic
+ molecules) with both hydrophilic and hydrophobic parts.
+ The bulk fluid interior contains both water, free ions, and clusters of
+ ions in micelle form.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/soap_film_struct.png
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Structure of a soap film
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Structure-of-soap-film-1"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bubbles_foam"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ A wide variety of literature, both academic and popular, is available concernin
+g the formation of bubbles with respect only to bubble longevity, not fluorescen
+ce, so conventional recipes for bubble solutions are broadly unsuitable
+ for OH-PLIF.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Bubble physics
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dependence of internal pressure on surface tension
+\begin_inset Formula 
+\[
+p=\frac{2\sigma_{f}}{r}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma_{f}$
+\end_inset
+
+ is the film tension (presumably dependent on the soap solution used.
+ 
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Add typical ranges for 
+\begin_inset Formula $\sigma_{f}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Add expected 
+\begin_inset Formula $\Delta p$
+\end_inset
+
+ for typical 
+\begin_inset Formula $\sigma_{f}$
+\end_inset
+
+ and 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Wall thickness
+\end_layout
+
+\begin_layout Itemize
+Wall structure
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Surface consists of a monomolecular layer of ions with both hydrophilic
+ and hydrophobic parts.
+ Bulk fluid interior contains both water, free ions, and clusters of ions
+ in micelle form.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/soap_film_struct.png
+	lyxscale 30
+	width 70text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Structure of a soap film
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Structure-of-soap-film"
+
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bubbles_foam"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because the presence of free electrons is likely into increase the intensity
+ of fluorescence, nonionic detergents (including polyether esters) are a
+ promising candidate for low-fluorescence films.
+ Other potential candidates include:
+\end_layout
+
+\begin_layout Itemize
+Sodium dodecyl sulfate 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hydro_soap_films"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Triton-X 100 (nonionic surfactant) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "soap_bub_anal_chem"
+
+\end_inset
+
+ 
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+2% v/v Triton X-100 dissolved in water, purivied by passage through a short
+ column of a nuclear grade mixed-bed ion-exchange resin column (Dowex MR-3).
+ ...
+ To increase the bubble film thickness and thus promote bubble longevity,
+ 10% v/v glycerol was added to the bubble-making solution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Triethylamine oleate has good longevity even in open air.
+ It is produced by combining some amount of triethanolamine with a little
+ less than two times (~1.95) its weight of oleic acid, which sits for 24
+ hours.
+ 30 g of the resulting soap is mixed with a liter of water and allowed to
+ settle for 24 hours.
+ It should separate into two layers--an upper, light-brown solution, and
+ a lower, light-grey solution.
+ The light-grey solution is siphoned into a stoppered bottle and set aside
+ for 24 hours, after which it is ready for use.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tough_soap_films"
+
+\end_inset
+
+.
+ This solution's strong point is its bubble longevity, so it may not be
+ appropriate for OH-PLIF, but is likely worth investigating for other bubble-rel
+ated experiments which do not require low solution fluorescence.
+\end_layout
+
+\begin_layout Standard
+Besides the bubble solution used, several other factors affect bubble longevity
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tough_soap_films"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Paragraph
+Negatively-impacting factors:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Solution
+\begin_inset space ~
+\end_inset
+
+impurities May be be avoided by purchasing lab-grade solution components
+ rather than commercial soaps as was done for past lab work.
+ Impurities can also be minimized with careful cleaning processes and choice
+ of noncorrosive materials for the pieces of apparatus which interact with
+ the bubble.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Humidity
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+the
+\begin_inset space ~
+\end_inset
+
+surroundings As increased humidity also increases bubble longevity, it may
+ be beneficial to condition the shock tube and bubble gas feeds with an
+ in-line humidifier.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Shocks
+\begin_inset space ~
+\end_inset
+
+and
+\begin_inset space ~
+\end_inset
+
+vibrations If electric motors are used in or around the bubble-forming apparatus
+, their vibrations should be damped to the degree possible so as to avoid
+ any impact on bubble longevity.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Environmental
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula ${\rm CO_{2}}$
+\end_inset
+
+ Tends to decrease bubble longevity, so carbon dioxide should be minimized
+ to the extent possible.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+Properties decreasing stability and longevity of bubbles
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Impurities
+\end_layout
+
+\begin_layout Itemize
+Humidity of the surroundings
+\end_layout
+
+\begin_layout Itemize
+Air currents
+\end_layout
+
+\begin_layout Itemize
+Shocks & vibrations
+\end_layout
+
+\begin_layout Itemize
+Environmental carbon dioxide
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Positively-impacting factors:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Glycerin Reduces evaporation, stabilizes the film in concentrations ranging
+ from 5-50%.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Aging Solutions should be allowed to age at least a day before use.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Sufficient
+\begin_inset space ~
+\end_inset
+
+solution For large bubbles, the bubble-forming apparatus should include
+ some means of continuously supplying soap solution as the bubble is blown.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Tannin Increases longevity (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tough_soap_films"
+
+\end_inset
+
+ suggests 25-100 mg of tannin per 25 
+\begin_inset Formula ${\rm cm^{3}}$
+\end_inset
+
+ of solution) of soap films.
+ It's unclear whether any benefit exists for nonionic surfactants.
+\end_layout
+
+\begin_layout Standard
+Attempting to continuously supply bubble solution as mentioned above poses
+ some difficulty.
+ Kanyanee et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "soap_bub_anal_chem"
+
+\end_inset
+
+ suggest an annular tube system consisting of an inner tube
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Polymer, 0.57 mm i.d., 0.95 mm o.d.
+\end_layout
+
+\end_inset
+
+ which supplies the soap solution, situated inside an outer tube
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Glass, 1.8 mm i.d.
+ No justification is given for the use of glass, so some other nonreactive
+ material may be appropriate.
+ Rutgers 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rutgers_fluid_dyn_exp_soapfilm"
+
+\end_inset
+
+ suggests that the soap solution only come in contact with anodized aluminum,
+ Teflon, glass, or surgical stainless steel to minimize corrosion (and potential
+ contamination).
+\end_layout
+
+\end_inset
+
+ which supplies gas
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+180 standard cubic centimeters per minute
+\end_layout
+
+\end_inset
+
+.
+ Soap solution is delivered by a solenoid valve pump
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+5 
+\begin_inset Formula $\mu$
+\end_inset
+
+L/stroke
+\end_layout
+
+\end_inset
+
+, with a capillary tube downstream of the pump to dampen irregularities
+ in the flow.
+\end_layout
+
+\begin_layout Section
+Experimental results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Missing Figure
+status open
+
+\begin_layout Plain Layout
+Table of soaps tested
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Table-of-soaps"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Experimental setup
+\end_layout
+
+\begin_layout Standard
+Approximately 30 
+\begin_inset Formula ${\rm cm^{3}}$
+\end_inset
+
+ of each soap solution was prepared as described by Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Table-of-soaps"
+
+\end_inset
+
+.
+ Solutions were pipetted into clean quartz cuvettes which were placed in
+ a cuvette holder and illuminated by an unfocused ultraviolet (
+\begin_inset Formula $\lambda=270$
+\end_inset
+
+ nm) light-emitting diode supplied with 5VDC at 25 
+\begin_inset Formula $\mu$
+\end_inset
+
+A.
+ An Andor DV434-BU2 1024x1024 CCD coupled with a 105mm UV-Nikkor lens was
+ used to capture images of candidate bubble solutions.
+ The Andor Solis camera control software was set per Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Andor-Solis-settings"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/fluor_img_setup.png
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Andor Solis software settings for fluorescence image acquisition
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Andor-Solis-settings"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Data
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Missing Figure
+status open
+
+\begin_layout Plain Layout
+Normalized (map intensity to [0,1] and relative [0,
+\begin_inset Formula $I_{max}$
+\end_inset
+
+] scales) background-subtracted fluorescence images
+\begin_inset CommandInset label
+LatexCommand label
+name "Normalized-imgs"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Analysis
+\end_layout
+
+\begin_layout Standard
+A set of ten successive images were taken of each solution.
+ The pixel intensity values (corresponding to fluorescence intensity) were
+ averaged across each set to obtain low-noise composite images.
+ A sub-image was selected corresponding to the cuvette holder window, allowing
+ unvarying background data to be ignored.
+ The results given in Table 
+\begin_inset Flex TODO Note (Margin)
+status collapsed
+
+\begin_layout Plain Layout
+insert ref
+\end_layout
+
+\end_inset
+
+ are defined as follows (intensity given in counts per second):
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\bar{I}_{B}$
+\end_inset
+
+ Mean intensity of baseline cuvette containing only distilled water
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\bar{I}_{S}$
+\end_inset
+
+ Mean intensity of cuvette with surfactant
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\bar{I}_{BS}$
+\end_inset
+
+ 
+\begin_inset Formula $\bar{I}_{S}-\bar{I}_{B}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\bar{I}_{{\rm max,rel}}$
+\end_inset
+
+ Surfactant and background cuvette subimages undergo Gaussian filtering
+ with 
+\begin_inset Formula $\sigma=1$
+\end_inset
+
+, then a background-subtracted image is produced by pixelwise subtraction
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Except for cases where 
+\begin_inset Formula $I_{B}[i,j]>I_{S}[i,j]$
+\end_inset
+
+: there, 
+\begin_inset Formula $I_{{\rm rel}}=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ of background intensity from surfactant image intensity.
+ 
+\begin_inset Formula $\bar{I}_{{\rm max,rel}}$
+\end_inset
+
+ is the maximum pixel intensity value from the resulting image.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $I_{{\rm max,rel,fit}}$
+\end_inset
+
+ Starting with the Gaussian-filtered background-subtracted image discussed
+ above, a small region containing the maximum fluorescence intensity was
+ selected.
+ The mean was taken along the vertical axis, producing a vector of mean
+ intensities.
+ As the intensity of fluorescence is expected to decrease exponentially
+ with distance transmitted in accordance with Beer's Law, the data was least-squ
+ares fit to an exponential model 
+\begin_inset Formula $I=I_{0}e^{\epsilon x}$
+\end_inset
+
+, with initial intensity 
+\begin_inset Formula $I_{0}\equiv I_{{\rm max,rel,fit}}$
+\end_inset
+
+ and decay parameter 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Surfactant fluorescence data
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Surfactant-fluorescence-data"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex Missing Figure
+status open
+
+\begin_layout Plain Layout
+Table with fluorescence results
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Subsection
+Potential sources of inaccuracy
+\end_layout
+
+\begin_layout Itemize
+Approximately 2mm of wiggle room present between the cuvette holder and
+ the cuvette, potentially allowing the region of maximum intensity to be
+ obscured by the cuvette holder
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Make soap recommendation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex TODO Note (inline)
+status open
+
+\begin_layout Plain Layout
+Recommend future work
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "C:/Users/Alex/Dropbox/shock/wistl_refs"
+options "IEEEtran"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+inputminted[breaklines,autogobble,fontsize=
+\backslash
+footnotesize]{julia}{C:/Users/Alex/Dropbox/shock/bubble_research/improcess.jl}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\start_of_appendix
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "improcess.jl"
+lstparams "caption={Image processing functions},label={improcess}"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

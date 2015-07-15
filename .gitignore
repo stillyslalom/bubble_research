@@ -1,0 +1,19 @@
+# Created by https://www.gitignore.io
+
+# Dropbox
+.dropbox
+*.ini
+
+# Images & pdfs
+*.tif
+*.sif
+*.pdf
+*.png
+*.svg
+
+### LyX ###
+# Ignore LyX backup and autosave files
+# http://www.lyx.org/
+*.lyx~
+*.lyx#
+
