@@ -3,6 +3,7 @@ for pkg in ("Images", "Color", "FixedPointNumbers", "ImageView", "LsqFit", "Wins
   Pkg.add(pkg)
 end
 =#
+ # test change
 using ProgressMeter
 # Import image processing routines
 using Images, Color, FixedPointNumbers, ImageView
