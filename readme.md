@@ -4,6 +4,7 @@
 Sets of images should be grouped into top-level folders by shared background conditions.
 
 Each top-level folder must contain three things:
+
 1. A folder containing background images
 2. A folder containing signal images
 3. A text file "boxes.txt" with the following format:
