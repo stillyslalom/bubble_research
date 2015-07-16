@@ -14,8 +14,6 @@
 \usepackage{pdftexcmds, etoolbox, xstring, xcolor}
 \usepackage{minted}
 
-\usepackage{fontspec,polyglossia,unicode-math}
-
 \usepackage{bm}
 
 \usepackage[bold]{hhtensor} % options:bold, arrow, uline
@@ -73,7 +71,7 @@ todonotes
 \font_roman garamondx
 \font_sans biolinum
 \font_typewriter beramono
-\font_math auto
+\font_math eulervm
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
