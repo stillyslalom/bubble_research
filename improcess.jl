@@ -3,8 +3,7 @@ for pkg in ("Images", "Color", "FixedPointNumbers", "ImageView", "LsqFit", "Wins
   Pkg.add(pkg)
 end
 =#
- # Test change with punctuation.
-using ProgressMeter
+
 # Import image processing routines
 using Images, Color, FixedPointNumbers, ImageView
 # Import curve-fitting and plotting functions
@@ -25,7 +24,7 @@ function readbasenames(dir, idx_len)
   # Filter out files without .tif extension from list
   csvnames = filter(fname -> splitext(fname)[2] == ".tif", fnames)
   # Return vector of unique base image names
-  return convert(Vector{ASCIIString},
+  return convert(Vector{ASCIIString}, # convert vector to concrete type
                  unique([csvname[1:end-(4+idx_len)] for csvname in csvnames]))
 end
 
@@ -70,17 +69,16 @@ Inputs:
 =#
 function imgavg(imgdir, imgbasename, range, num_id_len, ext,
                            xrange::Range, yrange::Range)
-  println(num_id_len)
   img1name = imname_gen(imgbasename, range[1], num_id_len, ext)
   # Load subimage of ROI
-  img1 = subim(imread(joinpath(rootdir,imgdir,img1name)), "x", xrange, "y", yrange)
+  img1 = subim(imread(joinpath(imgdir,img1name)), "x", xrange, "y", yrange)
   t = Gray{Float64} # Define type: grayscale double to prevent overflow when
                     # performing arithmetic on image sets
   imgout = map(MapNone(t),zeros(img1)) #
   xpx, ypx = size(img1)
   for img_num = range
     imgname = imgbasename*lpad("$(range[1])", num_id_len, "0")*ext
-    img = subim(imread(joinpath(rootdir,imgdir,imgname)), "x", xrange, "y", yrange)
+    img = subim(imread(joinpath(imgdir,imgname)), "x", xrange, "y", yrange)
     imgout += map(MapNone(t), img)
   end
   imgout /= length(range)
@@ -131,23 +129,34 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
                     range, num_id_len, bgrange, bg_num_id_len)
   # Read arrays of signal and background image base names
   imgbasenames = readbasenames(joinpath(rootdir,imgdir), 4)
-  bgbasename =   readbasenames(joinpath(rootdir,bgdir),  4)
+  bgbasename =   readbasenames(joinpath(rootdir,bgdir),  4)[1]
   n_imgs = length(imgbasenames) # Determine number of signal images collected
 
   # xrange, yrange: location of cuvette within image
   # xbox, ybox: location of maximum-intensity region within cuvette subimage
-  xrange = 5:142#525:670
-  yrange = 1:450
-  xbox = 100:135
-  ybox = 230:270
+  boxes = [eval(parse(rangetxt)) for rangetxt in readdlm("boxes.txt")]
+  xrange = boxes[1]; yrange = boxes[2]
+  relbox(range,box) = (box[1] - range[1] + 1):(box[end] - range[1] + 1)
+  xbox = relbox(xrange,boxes[3])
+  ybox = relbox(yrange,boxes[4])
+  println("xbox,ybox=$((xbox, ybox))")
+#   xrange = 5:142
+#   yrange = 1:450
+#   xbox = 100:135
+#   ybox = 230:270
   xboxdim = 8.78  # mm, width of cuvette window
+
   bgavg = imgavg(joinpath(rootdir, bgdir),
                  bgbasename, bgrange, bg_num_id_len, ext,
                  xrange, yrange)
 
-  imwrite(bgavg, joinpath(rootdir, outdir, bgbasename*"avg"*ext))
-  bgmean = mean(bgavg[xbox, ybox])
 
+  try mkdir(outdir) end # Create output directory if it doesn't already exist
+
+  imwrite(bgavg, joinpath(rootdir, outdir, bgbasename*"avg"*ext))
+
+  bgmean = mean(bgavg[xbox, ybox])  # ERROR SOURCE ===============================================
+        println("check")
   # Initialize output arrays
   imgmean = zeros(typeof(bgmean),n_imgs)
   imgmax = zeros(imgmean)
@@ -170,11 +179,10 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     imgmax[im_num] = maximum(img)
     gfilt(image) = imfilter_gaussian(image, [1., 1.])
     bgsubimg = bgsub(gfilt(img), gfilt(bgavg))
-    #bgsubimg = imfilter_gaussian(bgsub(img, bgavg), [1., 1.])
     bgsubimg = map(MapNone(typeof(img[1,1])), bgsubimg)
     bgsubmean[im_num] = mean(bgsubimg[xbox, ybox])
     imax, jmax = ind2sub(size(img), indmax(img))
-    println("$imgbasename: maximum intensity = $(bgsubmean[im_num]) at [$imax, $jmax]")
+    println("$imgbasename: peak intensity = $(bgsubmean[im_num]) at [$imax, $jmax]")
     bgsubmax[im_num] = img[imax, jmax]
     imwrite(img, joinpath(rootdir, outdir, imgbasename*"avg"*ext))
     imwrite(bgsubimg, joinpath(rootdir, outdir, imgbasename*"bgsub"*ext))
@@ -200,17 +208,12 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
 
   # Convert from fixed-point 16-bit representation to integer counts per second
   bgmean = convert(Int64, round(bgmean*scalefac))
-    for imgstat in [imgmean, bgsubmean, bgsubmax, bgsub_curvefit_max,
-                    bgsub_curvefit_eps]
-    println("$imgstat: $(typeof(imgstat))")
-    println(round(imgstat*scalefac))
-      imgstat = convert(Array{Int64,1}, round(imgstat*scalefac))
-    end
-   #imgmean = convert(Array{Int64,1}, round(imgmean*scalefac))
-#   bgsubmean = convert(Array{Int64,1}, round(bgsubmean*scalefac))
-#   bgsubmax = convert(Array{Int64,1}, round(bgsubmax*scalefac))
-#   bgsub_curvefit_max = convert(Array{Int64,1}, round(bgsub_curvefit_max*scalefac))
-#   bgsub_curvefit_eps = convert(Array{Int64,1}, round(bgsub_curvefit_eps*scalefac))
+  imgmean = convert(Array{Int64,1}, round(imgmean*scalefac))
+  bgsubmean = convert(Array{Int64,1}, round(bgsubmean*scalefac))
+  bgsubmax = convert(Array{Int64,1}, round(bgsubmax*scalefac))
+  bgsub_curvefit_max = convert(Array{Int64,1}, round(bgsub_curvefit_max*scalefac))
+  bgsub_curvefit_eps = convert(Array{Int64,1}, round(bgsub_curvefit_eps*scalefac))
+
   header_txt = ["Image names" "I_B" "I_S" "I_BS" "I_max, rel" "I_max, rel fit" "I_decay"]
 
   println(typeof(imgbasenames))
@@ -221,20 +224,15 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     data_table = [header_txt; I_data]
     writecsv(joinpath(rootdir, outdir, "Intensity_data.csv"), data_table)
 
-#   df = DataFrame(Img_Names = imgbasenames[:], I_B = fill(bgmean,n_imgs)[:],
-#                  I_S = imgmean[:], I_BS = bgsubmean[:],
-#                  Imax_rel = bgsubmax[:], Imax_rel_fit = bgsub_curvefit_max[:],
-#                  I_decay = bgsub_curvefit_eps[:])
-#   writetable(joinpath(rootdir, outdir, "Intensity_data.csv"), df)
-  return data_table #df
+  return data_table
 end
 
 @time fluor_test(setdir("3-23-15"), "signal", "back", "bgsub", ".tif",
            0:9, 4,
            0:9, 4)
+@time fluor_test(setdir("3-25-15"), "signal", "back", "bgsub", ".tif",
+           0:9, 4,
+           0:9, 4)
 
+2+2
 
-#testim = subim(imread(joinpath(workdir,"back\\back_1_0000.tif")), "x",525:670, "y", 1:450)
-
-#testim2 = imfilter_gaussian(testim, [1, 1])
-#testim3 = map(MapNone(typeof(testim[1,1])), testim2)
