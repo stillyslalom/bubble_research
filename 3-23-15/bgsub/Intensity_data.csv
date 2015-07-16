@@ -1,2 +1,2 @@
 Image names,I_B,I_S,I_BS,"I_max, rel","I_max, rel fit",I_decay
-soap_,170,366,Gray{Float32}(0.0059948666f0),Gray{Float32}(0.011474784f0),Gray{Float32}(0.011218718f0),Gray{Float32}(-0.0007607008f0)
+soap_,407,17182,16743,33629,34909,-12313
