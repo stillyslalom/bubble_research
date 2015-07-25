@@ -186,6 +186,8 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     bgsubmax[im_num] = img[imax, jmax]
     imwrite(img, joinpath(rootdir, outdir, imgbasename*"avg"*ext))
     imwrite(bgsubimg, joinpath(rootdir, outdir, imgbasename*"bgsub"*ext))
+    imwrite(sc(img),
+         splitdir(@__FILE__)[1]*"\\gfx\\autoscaled\\$(imgbasename).png")
 
     # Curve fit exponential model; find max
     model(x, p) = p[1]*exp(x.*p[2])
@@ -224,15 +226,5 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     data_table = [header_txt; I_data]
     writecsv(joinpath(rootdir, outdir, "Intensity_data.csv"), data_table)
 
-  return data_table
+  return data_table[2:end, :]
 end
-
-@time fluor_test(setdir("3-23-15"), "signal", "back", "bgsub", ".tif",
-           0:9, 4,
-           0:9, 4)
-@time fluor_test(setdir("3-25-15"), "signal", "back", "bgsub", ".tif",
-           0:9, 4,
-           0:9, 4)
-
-2+2
-
