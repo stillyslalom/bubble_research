@@ -186,6 +186,8 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     bgsubmax[im_num] = img[imax, jmax]
     imwrite(img, joinpath(rootdir, outdir, imgbasename*"avg"*ext))
     imwrite(bgsubimg, joinpath(rootdir, outdir, imgbasename*"bgsub"*ext))
+    imwrite(sc(img),
+         splitdir(@__FILE__)[1]*"\\gfx\\autoscaled\\$(imgbasename).png")
 
     # Curve fit exponential model; find max
     model(x, p) = p[1]*exp(x.*p[2])

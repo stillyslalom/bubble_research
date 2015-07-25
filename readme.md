@@ -25,7 +25,8 @@ e.g.
   230:270
 ```
 
-The ranges are the x and y pixel dimensions of the cuvette window
+The ranges are the x and y pixel dimensions of the cuvette window.
+
 The boxes are the x and y pixel dimensions of the maximum-intensity region within the cuvette window
 
 ## Image requirements

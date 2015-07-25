@@ -19,7 +19,6 @@ function run_improc(folder_list)
           result_array]
 end
 
-
 cd(splitdir(@__FILE__)[1])
 pwd()
 
