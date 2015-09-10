@@ -17,3 +17,6 @@
 *.lyx~
 *.lyx#
 
+# Icons
+
+*Thumbs.db

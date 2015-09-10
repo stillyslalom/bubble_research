@@ -4,10 +4,11 @@ for pkg in ("Images", "Color", "FixedPointNumbers", "ImageView", "LsqFit", "Wins
 end
 =#
 
-# Import image processing routines
-using Images, Color, FixedPointNumbers, ImageView
 # Import curve-fitting and plotting functions
 using LsqFit, Winston
+import Winston.add
+# Import image processing routines
+using Images, Colors, FixedPointNumbers, ImageView
 
 #= readbasenames(dir::String, ignore_len::Int)
 Inputs:
@@ -166,7 +167,7 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
   bgsub_curvefit_max = zeros(imgmean)
   bgsub_curvefit_eps = zeros(imgmean)
 
-  scalefac = 2^15 - 1 # For scaling float #s to counts per second
+  scalefac = 2^16 - 1 # For scaling float #s to counts per second
 
   im_num = 0
 
@@ -186,14 +187,14 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     bgsubmax[im_num] = img[imax, jmax]
     imwrite(img, joinpath(rootdir, outdir, imgbasename*"avg"*ext))
     imwrite(bgsubimg, joinpath(rootdir, outdir, imgbasename*"bgsub"*ext))
-    imwrite(sc(img),
-         splitdir(@__FILE__)[1]*"\\gfx\\autoscaled\\$(imgbasename).png")
+    imwrite(bgsubimg,
+         splitdir(@__FILE__)[1]*"\\gfx\\unscaled\\$(imgbasename).tif")
 
     # Curve fit exponential model; find max
     model(x, p) = p[1]*exp(x.*p[2])
     ydata = Float64[convert(Float64, img[i,j]) for i = xbox, j = ybox]
     ydatavec = reverse(vec(mean(ydata, 2)))
-    xdata = linspace(0, xboxdim, length(ydatavec))
+    xdata = linspace(0, xboxdim*(xbox[end]-xbox[1])/132, length(ydatavec))
     fit = LsqFit.curve_fit(model, xdata, ydatavec, [0.5, 0.5])
     bgsub_curvefit_max[im_num] = fit.param[1]
     bgsub_curvefit_eps[im_num] = fit.param[2]
@@ -205,7 +206,7 @@ function fluor_test(rootdir, imgdir, bgdir, outdir, ext,
     fitvals = model(xdata, fit.param)
     fitline = Curve(xdata, scalefac*fitvals)
     add(p, points, fitline)
-    savefig(p, joinpath(rootdir, outdir, imgbasename*"fit.svg"))
+    savefig(p, joinpath(rootdir, outdir, imgbasename*"fit.png"))
   end
 
   # Convert from fixed-point 16-bit representation to integer counts per second
