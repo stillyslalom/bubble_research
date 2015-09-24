@@ -184,6 +184,30 @@ listoftodos
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Motivation
 \end_layout
@@ -918,6 +942,7 @@ Experimental results
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -1278,7 +1303,7 @@ reference "tab:Table-of-soaps"
 .
  Solutions were pipetted into clean quartz cuvettes which were placed in
  a cuvette holder and illuminated by an unfocused ultraviolet (
-\begin_inset Formula $\lambda=270$
+\begin_inset Formula $\lambda=265$
 \end_inset
 
  nm) light-emitting diode supplied with 5VDC at 25 
@@ -1286,8 +1311,61 @@ reference "tab:Table-of-soaps"
 \end_inset
 
 A.
- An Andor DV434-BU2 1024x1024 CCD coupled with a 105mm UV-Nikkor lens was
- used to capture images of candidate bubble solutions.
+ An Andor DV434-BU2 1024x1024 CCD coupled with a 105mm UV-Nikkor lens (
+\begin_inset Formula $f=5.6$
+\end_inset
+
+) and a UV-pass filter stack
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "fig:UV-pass-filter-spectrum"
+
+\end_inset
+
+ for transmission spectrum of the UV-pass filter.
+ Spectra are not available for the other two filters in the stack, as their
+ part numbers and technical specifications are unknown.
+ Previous work described them as long-pass (
+\begin_inset Formula $\lambda>275$
+\end_inset
+
+ nm) and 
+\begin_inset Quotes eld
+\end_inset
+
+short-pass
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\begin_inset Formula $\lambda>225$
+\end_inset
+
+ nm per 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "navarro_soapfluor"
+
+\end_inset
+
+, although a true short-pass filter would be 
+\begin_inset Formula $\lambda<225$
+\end_inset
+
+ nm).
+ They are believed to be long-pass in reality, as both transmit yellow-tinted
+ visible light.
+\end_layout
+
+\end_inset
+
+ was used to capture images of candidate bubble solutions.
  The Andor Solis camera control software was set per Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1296,6 +1374,342 @@ reference "fig:Andor-Solis-settings"
 \end_inset
 
 .
+ The following components were used:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Part
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supplier/Mfg.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Part #
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Notes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Camera
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Andor
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DV434-BU2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lens
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nikon
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nikkor 
+\begin_inset Formula $f4.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Set at 
+\begin_inset Formula $f5.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UV-pass filter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thorlabs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FGUV11S
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UV-passing filter (
+\begin_inset Formula $\lambda\approx275-375$
+\end_inset
+
+ nm)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LED
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thorlabs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LED265W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supplied with 5VDC at 25 
+\begin_inset Formula $\mu$
+\end_inset
+
+A
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cuvette
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thorlabs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CV10Q3500F
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cuvette holder
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Newport
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13950
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Power supply
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WEP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PS-302D
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1308,7 +1722,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename gfx/fluor_img_setup.png
-	width 80text%
+	width 70text%
 
 \end_inset
 
@@ -1327,6 +1741,41 @@ name "fig:Andor-Solis-settings"
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/setup.png
+	lyxscale 10
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagram of experimental setup
 \end_layout
 
 \end_inset
@@ -1732,8 +2181,11 @@ Tergitol & soap 1:3:9
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Fluorescence intensity, normalized relative to maximum overall pixel intensity
- value
+Fluorescence intensity, normalized relative to maximum 
+\emph on
+overall
+\emph default
+ pixel intensity value
 \end_layout
 
 \end_inset
@@ -2120,8 +2572,11 @@ Tergitol & soap 1:3:9
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Fluorescence intensity, normalized relative to maximum image pixel intensity
- value
+Fluorescence intensity, normalized relative to maximum 
+\emph on
+image
+\emph default
+ pixel intensity value
 \end_layout
 
 \end_inset
@@ -4307,8 +4762,12 @@ options "IEEEtran"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
 \start_of_appendix
+Image-processing code
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -4333,6 +4792,59 @@ status collapsed
 LatexCommand lstinputlisting
 filename "improcess.jl"
 lstparams "caption={Image processing functions},label={improcess}"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Filter spectral distribution curves
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename gfx/FGUV11 Enlarged.gif
+	lyxscale 50
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UV-pass filter spectrum
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:UV-pass-filter-spectrum"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

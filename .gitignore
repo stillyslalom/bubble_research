@@ -10,6 +10,7 @@
 *.pdf
 *.png
 *.svg
+*.gif
 
 ### LyX ###
 # Ignore LyX backup and autosave files

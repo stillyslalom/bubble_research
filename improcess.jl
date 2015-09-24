@@ -6,7 +6,7 @@ end
 
 # Import curve-fitting and plotting functions
 using LsqFit, Winston
-import Winston.add
+#import Winston.add
 # Import image processing routines
 using Images, Colors, FixedPointNumbers, ImageView
 
@@ -98,9 +98,9 @@ function bgsub(img, bgimg)
   npx, npy = size(img)
   for j in 1:npy
     for i in 1:npx
-      diff = img[i,j] - bgimg[i,j]
+      delta = img[i,j] - bgimg[i,j]
       # Note: <bool> ? expr_1 : expr2 is shorthand for if <bool> expr1; else expr2.
-      imgout[i,j] = diff > imzero ? diff : imzero
+      imgout[i,j] = delta > imzero ? delta : imzero
     end
   end
   return imgout
